@@ -48,7 +48,8 @@ const generateRandomId = () => {
   let id;
   do {
     id = Math.floor(Math.random() * 1000000);
-  } while (persons.find(person => person.id === id));
+  } while (persons.find(person => person.id === id)); // Check if the id is already in use
+  // If the id is already in use, generate a new one
   return id;
 }
 
@@ -57,7 +58,7 @@ app.post('/api/persons', (request, response) => {
 
   if(!body.name || !body.number) {
     return response.status(400).json({
-      error: 'Name or number missing'
+      error: 'Name or number is missing'
     })
   }
 
@@ -77,13 +78,11 @@ app.post('/api/persons', (request, response) => {
   response.json(person)
 })
 
-
 app.delete('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
   persons = persons.filter(person => person.id !== id)
   response.status(204).end()
 })
-
 
 app.get('/api/info', (request, response) => {
   const info = `
