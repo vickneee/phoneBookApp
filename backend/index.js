@@ -1,5 +1,8 @@
 const express = require('express')
 const app = express()
+const morgan = require('morgan')
+
+app.use(morgan('tiny')) // Middleware to log the request details
 
 app.use(express.json()) // Middleware to parse JSON data in the body of the request
 
