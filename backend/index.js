@@ -1,11 +1,16 @@
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
+const cors = require('cors')
 
+// Middlewares
 app.use(morgan('tiny')) // Middleware to log the request details
 
 app.use(express.json()) // Middleware to parse JSON data in the body of the request
 
+app.use(cors()) // Middleware to allow requests from other origins
+
+// Data
 let persons =  [
   {
     "id": 1,
@@ -29,14 +34,18 @@ let persons =  [
   }
 ]
 
+// Routes
+// Route to get the home page
 app.get('/', (request, response) => {
   response.send('<h1>PhoneBook App!</h1>')
 })
 
+// Route to get all persons
 app.get('/api/persons', (request, response) => {
   response.json(persons)
 })
 
+// Route to get a single person
 app.get('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
   const person = persons.find(person => person.id === id)
@@ -47,6 +56,7 @@ app.get('/api/persons/:id', (request, response) => {
   }
 })
 
+// Function to generate a random id
 const generateRandomId = () => {
   let id;
   do {
@@ -56,6 +66,7 @@ const generateRandomId = () => {
   return id;
 }
 
+// Route to add a new person
 app.post('/api/persons', (request, response) => {
   const body = request.body
 
@@ -81,12 +92,14 @@ app.post('/api/persons', (request, response) => {
   response.json(person)
 })
 
+// Route to update a person
 app.delete('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
   persons = persons.filter(person => person.id !== id)
   response.status(204).end()
 })
 
+// Route to get the info
 app.get('/api/info', (request, response) => {
   const info = `
     <h1>Phonebook</h1>
@@ -96,7 +109,7 @@ app.get('/api/info', (request, response) => {
   response.send(info);
 });
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-  console.log(`Server running on: http://localhost:${PORT}/`)
+  console.log(`Server running on port ${PORT}`)
 })
