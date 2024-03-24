@@ -3,9 +3,7 @@ const dotenv = require('dotenv')
 const morgan = require('morgan')
 const cors = require('cors')
 const mongoose = require('mongoose')
-const Person = require('./models/personModel')
 const {getHomePage, getAllPersons} = require("./controllers/personController");
-
 
 // Middlewares
 dotenv.config() // Middleware to load environment variables from a .env file into process.env
@@ -52,11 +50,9 @@ const requestLogger = (request, response, next) => {
 
 app.use(requestLogger)
 
-
 // Routes Middlewares
 app.get('/', getHomePage);
 app.get('/api/persons', getAllPersons);
-
 
 // Route to get a single person
 app.get('/api/persons/:id', (request, response) => {
