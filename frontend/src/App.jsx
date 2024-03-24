@@ -96,7 +96,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <p>Be patient! Connecting to MongoDB takes a few moments.</p>
+      <p>Be patient! Connecting to MongoDB could take a few moments.</p>
       <Notification message={notificationMessage} type="success"/>
       <Notification message={errorMessage} type="error"/>
       <Filter searchTerm={searchTerm} handleSearchChange={handleSearchChange}/>
