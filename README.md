@@ -8,8 +8,8 @@ Helsingin Yliopiston Full Stack MOOC submission repository. PhoneBook App with a
 
 ### Frontend - frontend:
 
-- Static page:
+- [Static page:](https://vickneee-phonebookapp.onrender.com/) 
 
 ### Backend - backend:
 
-- Web Service:
+- [Web Service:](https://phonebook-backend-cmob.onrender.com/)
