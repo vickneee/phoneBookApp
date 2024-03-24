@@ -3,7 +3,7 @@ const dotenv = require('dotenv')
 const morgan = require('morgan')
 const cors = require('cors')
 const mongoose = require('mongoose')
-const {getHomePage, getAllPersons} = require("./controllers/personController");
+const {getHomePage, getAllPersons, addPerson} = require("./controllers/personController");
 
 // Middlewares
 dotenv.config() // Middleware to load environment variables from a .env file into process.env
@@ -53,6 +53,7 @@ app.use(requestLogger)
 // Routes Middlewares
 app.get('/', getHomePage);
 app.get('/api/persons', getAllPersons);
+app.post('/api/persons', addPerson);
 
 // Route to get a single person
 app.get('/api/persons/:id', (request, response) => {
@@ -63,42 +64,6 @@ app.get('/api/persons/:id', (request, response) => {
   } else {
     response.status(404).end()
   }
-})
-
-// Function to generate a random id
-const generateRandomId = () => {
-  let id;
-  do {
-    id = Math.floor(Math.random() * 1000000);
-  } while (persons.find(person => person.id === id)); // Check if the id is already in use
-  // If the id is already in use, generate a new one
-  return id;
-}
-
-// Route to add a new person
-app.post('/api/persons', (request, response) => {
-  const body = request.body
-
-  if(!body.name || !body.number) {
-    return response.status(400).json({
-      error: 'Name or number is missing'
-    })
-  }
-
-  if(persons.find(person => person.name === body.name)) {
-    return response.status(400).json({
-      error: 'User with this Name is already in database'
-    })
-  }
-
-  const person = {
-    id: generateRandomId(),
-    name: body.name,
-    number: body.number
-  }
-
-  persons = persons.concat(person)
-  response.json(person)
 })
 
 // Route to update a person

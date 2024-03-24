@@ -9,6 +9,9 @@ app.get('/', getHomePage);
 // Route to get all persons
 app.get('/api/persons' , getAllPersons);
 
+// Route to add a new person
+app.post('/api/persons', addPerson);
+
 module.exports = app;
 
 // // Routes
