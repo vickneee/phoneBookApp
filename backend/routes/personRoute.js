@@ -1,5 +1,5 @@
 const express = require('express');
-const { getHomePage, getAllPersons, addPerson } = require("../controllers/personController");
+const { getHomePage, getAllPersons, findPerson, addPerson } = require("../controllers/personController");
 
 const app = express();
 
@@ -9,22 +9,15 @@ app.get('/', getHomePage);
 // Route to get all persons
 app.get('/api/persons' , getAllPersons);
 
+// Route to get a single person
+app.get('/api/persons/:id', findPerson);
+
 // Route to add a new person
 app.post('/api/persons', addPerson);
 
 module.exports = app;
 
-// // Routes
-// // Route to get the home page
-// app.get('/', (request, response) => {
-//   response.send('<h1>PhoneBook App!</h1>')
-// })
-//
-// // Route to get all persons
-// app.get('/api/persons', (request, response) => {
-//   response.json(persons)
-// })
-//
+
 // // Route to get a single person
 // app.get('/api/persons/:id', (request, response) => {
 //   const id = Number(request.params.id)

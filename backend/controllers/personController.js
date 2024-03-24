@@ -22,6 +22,22 @@ const getAllPersons = app.get('/api/persons', async (request, response) => {
   }
 })
 
+// Route to get a single person
+const findPerson = app.get('/api/persons/:id', async (request, response) => {
+  const id = request.params.id;
+  try {
+    const person = await Person.findById(id);
+    if(person) {
+      response.json(person);
+    } else {
+      response.status(404).end();
+    }
+  } catch (error) {
+    console.error(error);
+    response.status(500).send('An error occurred while fetching the person');
+  }
+});
+
 // Function to generate a random id
 // const generateRandomId = () => {
 //   let id;
@@ -70,5 +86,6 @@ const addPerson = app.post('/api/persons', async (request, response) => {
   module.exports = {
     getHomePage,
     getAllPersons,
+    findPerson,
     addPerson
   };
