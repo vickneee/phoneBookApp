@@ -15,6 +15,8 @@ app.use(express.json()) // Middleware to parse JSON data in the body of the requ
 app.use(cors()) // Middleware to allow requests from other origins
 // app.use(express.static('build')) // Middleware to serve static files
 
+// Backend Deployment to Render is Successful Exercise 3.10
+
 // // Data
 // let persons =  [
 //   {
