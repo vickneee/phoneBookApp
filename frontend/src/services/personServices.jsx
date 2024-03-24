@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/api/persons'
+// const baseUrl = 'http://localhost:3001/api/persons' // Backend URL for the persons before deployment
+const baseUrl = '/https://phonebook-backend-cmob.onrender.com/api/persons' // Backend URL for the persons after deployment
 
 const getAll = () => {
   return axios.get(baseUrl)
