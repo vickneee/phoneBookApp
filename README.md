@@ -10,18 +10,6 @@ Helsingin Yliopiston Full Stack MOOC submission repository. PhoneBook App with a
 
 - Static page:
 
-**Root Directory:** frontend
-
-**Build Command:** frontend/ npm run build
-
-**Publish Directory:** frontend/ dist
-
 ### Backend - backend:
 
 - Web Service:
-
-**Root Directory:** backend
-
-**Build Command:** backend/ npm install
-
-**Start Command:** backend/ npm start 
