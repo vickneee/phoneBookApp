@@ -1,5 +1,5 @@
 const express = require('express');
-const { getHomePage, getAllPersons } = require("../controllers/personController");
+const { getHomePage, getAllPersons, addPerson } = require("../controllers/personController");
 
 const app = express();
 
