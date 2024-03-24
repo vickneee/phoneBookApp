@@ -3,6 +3,9 @@ const dotenv = require('dotenv')
 const morgan = require('morgan')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const Person = require('./models/personModel')
+const {getHomePage, getAllPersons} = require("./controllers/personController");
+
 
 // Middlewares
 dotenv.config() // Middleware to load environment variables from a .env file into process.env
@@ -14,29 +17,29 @@ app.use(express.json()) // Middleware to parse JSON data in the body of the requ
 app.use(cors()) // Middleware to allow requests from other origins
 // app.use(express.static('build')) // Middleware to serve static files
 
-// Data
-let persons =  [
-  {
-    "id": 1,
-    "name": "Arto Hellas",
-    "number": "040-123456"
-  },
-  {
-    "id": 2,
-    "name": "Ada Lovelace",
-    "number": "39-23-6423122",
-  },
-  {
-    "id": 3,
-    "name": "Dan Abramov",
-    "number": "12-43-234345"
-  },
-  {
-    "id": 4,
-    "name": "Mary Poppendieck",
-    "number": "39-23-6423122",
-  }
-]
+// // Data
+// let persons =  [
+//   {
+//     "id": 1,
+//     "name": "Arto Hellas",
+//     "number": "040-123456"
+//   },
+//   {
+//     "id": 2,
+//     "name": "Ada Lovelace",
+//     "number": "39-23-6423122",
+//   },
+//   {
+//     "id": 3,
+//     "name": "Dan Abramov",
+//     "number": "12-43-234345"
+//   },
+//   {
+//     "id": 4,
+//     "name": "Mary Poppendieck",
+//     "number": "39-23-6423122",
+//   }
+// ]
 
 
 const requestLogger = (request, response, next) => {
@@ -49,16 +52,11 @@ const requestLogger = (request, response, next) => {
 
 app.use(requestLogger)
 
-// Routes
-// Route to get the home page
-app.get('/', (request, response) => {
-  response.send('<h1>PhoneBook App!</h1>')
-})
 
-// Route to get all persons
-app.get('/api/persons', (request, response) => {
-  response.json(persons)
-})
+// Routes Middlewares
+app.get('/', getHomePage);
+app.get('/api/persons', getAllPersons);
+
 
 // Route to get a single person
 app.get('/api/persons/:id', (request, response) => {
