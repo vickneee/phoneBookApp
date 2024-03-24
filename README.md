@@ -6,22 +6,22 @@ Helsingin Yliopiston Full Stack MOOC submission repository. PhoneBook App with a
 
 ![Status](https://img.shields.io/badge/render-published-darkgreen.svg)
 
-### Frontend - client:
+### Frontend - frontend:
 
 - Static page:
 
-**Root Directory:** client
+**Root Directory:** frontend
 
-**Build Command:** client/ npm run build
+**Build Command:** frontend/ npm run build
 
-**Publish Directory:** client/ dist
+**Publish Directory:** frontend/ dist
 
-### Backend - api:
+### Backend - backend:
 
 - Web Service:
 
-**Root Directory:** api
+**Root Directory:** backend
 
-**Build Command:** api/ npm install
+**Build Command:** backend/ npm install
 
-**Start Command:** api/ npm start 
+**Start Command:** backend/ npm start 
