@@ -84,7 +84,7 @@ A successful POST request typically returns a 200 OK or 201 Created response cod
 ```json
 {
     "name": "Teet Sukk",
-    "number": 040-45679877
+    "number": 04045679877
 }
 ```
 
@@ -103,7 +103,7 @@ A successful PUT request typically returns a 200 OK, 201 Created, or 204 No Cont
 ```json
 {
     "name": "Janne Saar",
-    "number": 040-66666666
+    "number": 04066666666
 }
 ```
 
