@@ -3,6 +3,22 @@ const Person = require('../models/personModel')
 
 const app = express()
 
+// Controller to get info
+const getInfo = app.get('/api/info', async (request, response) => {
+  try {
+    const count = await Person.countDocuments({});
+    const info = `
+      <h1>Phonebook</h1>
+      <p>Phonebook has info for ${count} people</p>
+      <p>${new Date()}</p>
+    `;
+    response.send(info);
+  } catch (error) {
+    console.error(error);
+    response.status(500).send('An error occurred while fetching the info');
+  }
+});
+
 // Controller to get home page
 const getHomePage = app.get('/', (request, response) => {
   response.send('<h1>PhoneBook App!</h1>')
@@ -22,7 +38,7 @@ const getAllPersons = app.get('/api/persons', async (request, response) => {
   }
 })
 
-// Route to get a single person
+// Controller to get a single person
 const findPerson = app.get('/api/persons/:id', async (request, response) => {
   const id = request.params.id;
   try {
@@ -38,17 +54,7 @@ const findPerson = app.get('/api/persons/:id', async (request, response) => {
   }
 });
 
-// Function to generate a random id
-// const generateRandomId = () => {
-//   let id;
-//   do {
-//     id = Math.floor(Math.random() * 1000000);
-//   } while (Person.find(person => person.id === id)); // Check if the id is already in use
-//   // If the id is already in use, generate a new one
-//   return id;
-// }
-
-// Route to add a new person
+// Controller to add a new person
 const addPerson = app.post('/api/persons', async (request, response) => {
   try {
     const body = request.body
@@ -82,10 +88,28 @@ const addPerson = app.post('/api/persons', async (request, response) => {
   }
 });
 
+// Controller to delete a person
+const deletePerson = app.delete('/api/persons/:id', async (request, response) => {
+  const id = request.params.id;
+  try {
+    const result = await Person.findByIdAndDelete(id);
+    if (result) {
+      response.status(204).end();
+    } else {
+      response.status(404).send('User not found or already deleted');
+    }
+  } catch (error) {
+    console.error(error);
+    response.status(500).send('An error occurred while deleting the person');
+  }
+});
+
 // Export the controllers
   module.exports = {
+    getInfo,
     getHomePage,
     getAllPersons,
     findPerson,
-    addPerson
+    addPerson,
+    deletePerson
   };
