@@ -16,7 +16,8 @@ Helsingin Yliopiston Full Stack MOOC submission repository. PhoneBook App with a
 
 ## API EndPoints
 
-- **GET** GET Home Page
+**GET** GET Home Page
+
 ```bash
 {{baseURL}}/
 ```
@@ -26,7 +27,8 @@ This is a GET request and it is used to "get" data from an endpoint. There is no
 A successful GET response will have a 200 OK status, and should include some kind of response body - for example, HTML web content or JSON data.
 
 ﻿
-- **GET** GET Info
+**GET** GET Info
+
 ```bash
 {{baseURL}}/api/info
 ```
@@ -36,7 +38,8 @@ This is a GET request and it is used to "get" data from an endpoint. There is no
 A successful GET response will have a 200 OK status, and should include some kind of response body - for example, HTML web content or JSON data.
 
 ﻿
-- **GET** GET All Persons
+**GET** GET All Persons
+
 ```bash
 {{baseURL}}/api/persons
 ```
@@ -46,7 +49,8 @@ This is a GET request and it is used to "get" data from an endpoint. There is no
 A successful GET response will have a 200 OK status, and should include some kind of response body - for example, HTML web content or JSON data.
 
 ﻿
-- **GET** GET a Person By ID
+**GET** GET a Person By ID
+
 ```bash
 {{baseURL}}/api/persons/66006cd621e429870e9d11d2
 ```
@@ -55,8 +59,8 @@ This is a GET request and it is used to "get" data from an endpoint. There is no
 
 A successful GET response will have a 200 OK status, and should include some kind of response body - for example, HTML web content or JSON data.
 
-﻿
-- **POST** ADD a Person
+﻿**POST** ADD a Person
+ 
 ```bash
 {{baseURL}}/api/persons
 ```
@@ -65,7 +69,7 @@ This is a POST request, submitting data to an API via the request body. This req
 
 A successful POST request typically returns a 200 OK or 201 Created response code.
 
-**Body**
+- **Body**
 
 ```json
 {
@@ -74,7 +78,8 @@ A successful POST request typically returns a 200 OK or 201 Created response cod
 }
 ```
 
-- **PUT** UPDATE a Person
+**PUT** UPDATE a Person
+
 ```bash
 {{baseURL}}/api/persons/660094f8e59af5e2816c663c
 ```
@@ -83,7 +88,7 @@ This is a PUT request and it is used to overwrite an existing piece of data. For
 
 A successful PUT request typically returns a 200 OK, 201 Created, or 204 No Content response code.
 
-**Body**
+- **Body**
 
 ```json
 {
@@ -92,8 +97,8 @@ A successful PUT request typically returns a 200 OK, 201 Created, or 204 No Cont
 }
 ```
 
+**DELETE** **DELETE a Person By ID**
 
-- **DELETE** **DELETE a Person By ID**
 ```bash
 {{baseURL}}/api/persons/66008ac333a19a5bc835edb7
 ```
