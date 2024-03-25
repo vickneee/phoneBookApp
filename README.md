@@ -4,6 +4,10 @@ Helsingin Yliopiston Full Stack MOOC submission repository. PhoneBook App with a
 
 ## Tech Tools 
 
+- Vite React
+- Node.js
+- Express.js
+- MongoDB
 - IntelliJ
 - Postman
 - Render
