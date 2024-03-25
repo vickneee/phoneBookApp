@@ -4,7 +4,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const errorHandler = require('./middleware/errorHandler')
-const {getInfo, getHomePage, getAllPersons, findPerson, addPerson, deletePerson} = require("./controllers/personController");
+const {getInfo, getHomePage, getAllPersons, findPerson, addPerson, updatePerson, deletePerson} = require("./controllers/personController");
 
 // Middlewares
 dotenv.config() // Middleware to load environment variables from a .env file into process.env
@@ -29,11 +29,12 @@ app.use(requestLogger)
 app.use(errorHandler)
 
 // Routes Middlewares
-app.get('/api/info', getInfo);
+app.get('/api/info', getInfo); // Route to get info about the phonebook Exercise 3.18
 app.get('/', getHomePage);
 app.get('/api/persons', getAllPersons);
-app.get('/api/persons/:id', findPerson);
+app.get('/api/persons/:id', findPerson); // Route to get a single person by ID Exercise 3.18
 app.post('/api/persons', addPerson);
+app.put('/api/persons/:id', updatePerson);
 app.delete('/api/persons/:id', deletePerson);
 
 const url = process.env.MONGODB_URI
