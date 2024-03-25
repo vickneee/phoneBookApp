@@ -16,8 +16,7 @@ Helsingin Yliopiston Full Stack MOOC submission repository. PhoneBook App with a
 
 ## API EndPoints
 
-- GET
-- GET Home Page
+- **GET** GET Home Page
 {{baseURL}}/
 
 This is a GET request and it is used to "get" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have id=1).
@@ -25,8 +24,7 @@ This is a GET request and it is used to "get" data from an endpoint. There is no
 A successful GET response will have a 200 OK status, and should include some kind of response body - for example, HTML web content or JSON data.
 
 ﻿
-- GET
-- GET Info
+- **GET** GET Info
 {{baseURL}}/api/info
 
 This is a GET request and it is used to "get" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have id=1).
