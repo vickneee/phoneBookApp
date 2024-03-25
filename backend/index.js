@@ -16,6 +16,8 @@ app.use(express.json()) // Middleware to parse JSON data in the body of the requ
 app.use(cors()) // Middleware to allow requests from other origins
 
 // Backend Deployment to Render is Successful Exercise 3.10
+// Backend Deployment to Render is Successful Exercise 3.21
+// Auto-Deploy in ON for the backend repository on Render.com
 
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method)
