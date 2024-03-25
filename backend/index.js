@@ -3,6 +3,7 @@ const dotenv = require('dotenv')
 const morgan = require('morgan')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const errorHandler = require('./middleware/errorHandler')
 const {getInfo, getHomePage, getAllPersons, findPerson, addPerson, deletePerson} = require("./controllers/personController");
 
 // Middlewares
@@ -13,7 +14,6 @@ let app = express() // Create an express app
 app.use(morgan('tiny')) // Middleware to log the request details
 app.use(express.json()) // Middleware to parse JSON data in the body of the request
 app.use(cors()) // Middleware to allow requests from other origins
-// app.use(express.static('build')) // Middleware to serve static files
 
 // Backend Deployment to Render is Successful Exercise 3.10
 
@@ -26,6 +26,7 @@ const requestLogger = (request, response, next) => {
 }
 
 app.use(requestLogger)
+app.use(errorHandler)
 
 // Routes Middlewares
 app.get('/api/info', getInfo);
@@ -40,7 +41,7 @@ const url = process.env.MONGODB_URI
 // console.log('connecting to', url) // Uncomment this line to see the value of the url variable
 
 mongoose.connect(url)
-  .then(result => {
+  .then(() => {
     console.log('connected to MongoDB')
   })
   .catch(error => {

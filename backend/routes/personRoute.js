@@ -1,7 +1,10 @@
 const express = require('express');
-const { getHomePage, getAllPersons, findPerson, addPerson, deletePerson } = require("../controllers/personController");
+const { getInfo, getHomePage, getAllPersons, findPerson, addPerson, deletePerson } = require("../controllers/personController");
 
 const app = express();
+
+// Route to get the info page
+app.get('/api/info', getInfo);
 
 // Route to get the home page
 app.get('/', getHomePage);
