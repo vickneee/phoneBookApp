@@ -26,7 +26,7 @@ const getInfo = app.get('/api/info', async (request, response, next) => {
 // Controller to get home page
 const getHomePage = app.get('/', async (request, response, next) => {
   try {
-    await response.send('<h1>PhoneBook App!</h1>');
+    await response.send('<h1>Welcome to PhoneBook App!</h1>');
   } catch (error) {
     // Pass the error to the error handler middleware
     next(error);
@@ -96,6 +96,29 @@ const addPerson = app.post('/api/persons', async (request, response, next) => {
   }
 });
 
+// Controller to update a person
+const updatePerson = app.put('/api/persons/:id', async (request, response, next) => {
+  const id = request.params.id;
+  const body = request.body;
+
+  const person = {
+    name: body.name,
+    number: body.number
+  };
+
+  try {
+    const updatedPerson = await Person.findByIdAndUpdate(id, person, { new: true });
+    if(updatedPerson) {
+      response.json(updatedPerson);
+    } else {
+      response.status(404).send('User not found');
+    }
+  } catch (error) {
+    // Pass the error to the error handler middleware
+    next(error);
+  }
+});
+
 // Controller to delete a person
 const deletePerson = app.delete('/api/persons/:id', async (request, response, next) => {
   const id = request.params.id;
@@ -119,5 +142,6 @@ const deletePerson = app.delete('/api/persons/:id', async (request, response, ne
     getAllPersons,
     findPerson,
     addPerson,
+    updatePerson,
     deletePerson
   };

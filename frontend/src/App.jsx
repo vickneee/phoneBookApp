@@ -45,15 +45,23 @@ const App = () => {
 // Handle the submission of new names and numbers
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const existingPerson = persons.find((person) => person.name === newName);
+
     const newPerson = {
+      id: existingPerson.id,
       name: newName,
       number: newNumber,
     };
 
-    const existingPerson = persons.find((person) => person.name === newName);
-
     if (existingPerson) {
       if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
+        console.log("New PERSON!", newPerson);
+        console.log("EXISTING PERSON!", existingPerson);
+        console.log("EXISTING PERSON ID!", existingPerson.id);
+        console.log("NEW PERSON ID!", newPerson.id);
+        console.log("NEW PERSON NAME!", newPerson.name)
+        console.log("NEW PERSON NUMBER!", newPerson.number);
         personService.update(existingPerson.id, newPerson)
           .then((updatedPerson) => {
             setPersons(persons.map((person) => person.id !== existingPerson.id ? person : updatedPerson));
@@ -62,8 +70,8 @@ const App = () => {
             setNotificationMessage(`Updated number of ${newName}`);
           })
           .catch((error) => {
-            setErrorMessage(`Information of ${newName} has already been removed from the server`);
-            console.log(error);
+            console.log("This is ERROR!", error);
+            setErrorMessage(`An error occurred ${error.message}`);
           });
       }
     } else {
