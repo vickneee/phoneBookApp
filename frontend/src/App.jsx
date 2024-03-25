@@ -47,7 +47,7 @@ const App = () => {
 const handleSubmit = (event) => {
   event.preventDefault();
 
-  // Error handling for name length
+  // Error handling for name length Exercise 3.19 - Validation Error
   if (newName.length < 3) {
     setErrorMessage("Name must be at least 3 characters long");
     return;

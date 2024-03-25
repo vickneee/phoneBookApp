@@ -6,8 +6,18 @@ const mongoose = require('mongoose');
 
 // Create a Mongoose model from the schema
 const personSchema = new mongoose.Schema({
-  name: String,
-  number: Number
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+    minlength: 3
+  },
+  number: {
+    type: Number,
+    required: true,
+    minlength: 8,
+    maxLength: 12,
+  }
 });
 
 // Format the returned object
