@@ -42,51 +42,64 @@ const App = () => {
     setNewNumber(event.target.value);
   };
 
-// Handle the submission of new names and numbers
-  const handleSubmit = (event) => {
-    event.preventDefault();
 
-    const existingPerson = persons.find((person) => person.name === newName);
+  // Exercise 3.17 - PUT request to update existing number
+const handleSubmit = (event) => {
+  event.preventDefault();
 
+  // Error handling for name length
+  if (newName.length < 3) {
+    setErrorMessage("Name must be at least 3 characters long");
+    return;
+  }
+
+  const existingPerson = persons.find((person) => person.name === newName);
+
+  if (existingPerson) {
     const newPerson = {
       id: existingPerson.id,
       name: newName,
       number: newNumber,
     };
 
-    if (existingPerson) {
-      if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
-        console.log("New PERSON!", newPerson);
-        console.log("EXISTING PERSON!", existingPerson);
-        console.log("EXISTING PERSON ID!", existingPerson.id);
-        console.log("NEW PERSON ID!", newPerson.id);
-        console.log("NEW PERSON NAME!", newPerson.name)
-        console.log("NEW PERSON NUMBER!", newPerson.number);
-        personService.update(existingPerson.id, newPerson)
-          .then((updatedPerson) => {
-            setPersons(persons.map((person) => person.id !== existingPerson.id ? person : updatedPerson));
-            setNewName("");
-            setNewNumber("");
-            setNotificationMessage(`Updated number of ${newName}`);
-          })
-          .catch((error) => {
-            console.log("This is ERROR!", error);
-            setErrorMessage(`An error occurred ${error.message}`);
-          });
-      }
-    } else {
-      personService.create(newPerson)
-        .then((createdPerson) => {
-          setPersons(persons.concat(createdPerson));
+    if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
+      personService.update(existingPerson.id,  newPerson)
+        .then((returnedPerson) => {
+          setPersons(
+            persons.map((person) =>
+              person.id !== existingPerson.id ? person : returnedPerson)
+          );
           setNewName("");
           setNewNumber("");
-          setNotificationMessage(`Added ${newName}`);
+          setNotificationMessage(`Updated ${newName}`);
         })
         .catch((error) => {
+          setErrorMessage(
+            `Error ${newName} updating on server`
+          );
           console.log(error);
+          setPersons(persons.filter((person) => person.id !== existingPerson.id));
         });
+
     }
-  };
+  } else {
+    const newPerson = {
+      name: newName,
+      number: newNumber,
+    };
+
+    personService.create(newPerson)
+      .then((createdPerson) => {
+        setPersons(persons.concat(createdPerson));
+        setNewName("");
+        setNewNumber("");
+        setNotificationMessage(`Added ${newName}`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+};
 
   return (
     <div>
