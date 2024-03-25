@@ -80,19 +80,6 @@ const App = () => {
     }
   };
 
-  const handleDelete = (id) => {
-    const person = persons.find((p) => p.id === id);
-    if (person && window.confirm(`Do you really want to delete ${person.name}?`)) {
-      personService.deletePerson(id)
-        .then(() => {
-          setPersons(persons.filter((p) => p.id !== id));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  };
-
   return (
     <div>
       <h2>Phonebook</h2>
@@ -109,7 +96,7 @@ const App = () => {
         handleSubmit={handleSubmit}
       />
       <h2>Numbers</h2>
-      <Persons persons={filteredPersons} handleDelete={handleDelete}/>
+      <Persons persons={filteredPersons} />
     </div>
   );
 };
