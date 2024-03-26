@@ -18,11 +18,15 @@ Helsingin Yliopiston Full Stack MOOC submission repository. PhoneBook App with a
 
 ### Frontend - frontend:
 
-- [Static page:](https://vickneee-phonebookapp.onrender.com/) 
+- [Static page:](https://vickneee-phonebookapp.onrender.com/)
+  
+- Add Environment Variables
 
 ### Backend - backend:
 
 - [Web Service:](https://phonebook-backend-cmob.onrender.com/)
+
+- Add Environment Variables
 
 ## Backend API EndPoints
 
